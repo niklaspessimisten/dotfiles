@@ -1,0 +1,81 @@
+autoload -U colors && colors
+
+for color in red green yellow blue magenta cyan black white; do
+    eval $color='%{$fg_no_bold[${color}]%}'
+    #eval ${color}_bold='%{$fg_bold[${color}]%}'
+done
+
+reset="%{$reset_color%}"
+
+if [[ -n "$SSH_CLIENT" || -n "$SSH2_CLIENT" ]]; then
+  host="${black}[${blue}%m${black}] " #SSH
+else
+  unset host # no SSH
+fi
+
+if [ "$EUID" -eq 0 ]; then
+  PROMPT="${host}${red}[${magenta}%2`${red}]${reset} " # root
+else
+  PROMPT="${host}${black}[${magenta}%2`${black}]${reset} " # user
+fi
+
+export GREP_COLORS="mt=33"
+export LANG=en_US.UTF-8
+export LANG=ru_RU.UTF-8
+
+autoload -U compinit promptinit
+compinit
+promptinit
+
+prompt walters
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=9999
+SAVEHIST=9999
+
+setopt extended_history
+
+autoload -U compinit && compinit
+
+#Key bindings
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\ee[C" forward-word
+bindkey "\ee[D" backward-word
+bindkey "\e^H" backward-delete-word
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+# for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+# completion in the middle of a line
+bindkey '^i' expand-or-complete-prefix
+
+#Alias
+alias  y='yaourt -S --noconfirm'
+alias yu='yaourt -Syu --aur --noconfirm'
+alias ya='yaourt -Syu --aur'
+
+alias yi='yaourt -Si'
+alias ys='yaourt -Ss'
+
+alias yr='yaourt -Rns'
+alias yd='yaourt -Rdd'
+
+alias pacman='sudo pacman'
+
+#Colored syntax
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
