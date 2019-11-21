@@ -13,10 +13,10 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #80000000
+background = #88000000
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
-foreground = #FFFFFF
+foreground = #ccffffff
 foreground-alt = #444
 primary = #ffb52a
 secondary = #e60053
@@ -30,17 +30,17 @@ bottom=false
 enable-ipc = true
 wm-restack = i3
 width = 100%
-height = 26
+height = 24
 radius = 0
 fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 1
 line-color = #FFF
 
-border-size = 8
+border-size = 7
 border-color = #00000000
 
 padding-left = 1
@@ -55,13 +55,13 @@ font-2 = Noto Mono-Regular: size=14;0
 font-3 = Material Icons: size=14;0
 font-4 = Font Awesome 5 Brands Regular: size=14;3
 font-5 = Font Awesome 5 Free Solid: size=14;3
-font-6 = 微软雅黑: size=14;3
+font-6 = 微软雅黑: size=14;2
 ;font-6 = 新宋体: size=14;3
 ;font-6 = Noto Sans CJK SC: size=14;3
 
 modules-left = mpd xwindow
 modules-center = i3
-modules-right = xkeyboard alsa date
+modules-right = xkeyboard pulseaudio battery date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -164,7 +164,7 @@ label-focused-padding = 1
 label-unfocused = %icon%
 label-unfocused-padding = 1
 
-label-urgent = %name%
+label-urgent = %icon%
 label-urgent-foreground = #000000
 label-urgent-background = #bd2c40
 label-urgent-padding = 1
@@ -357,7 +357,7 @@ label-volume-foreground = ${root.foreground}
 
 ;format-muted-prefix = 
 format-muted-foreground = ${colors.foreground-alt}
-label-muted =  Muted
+label-muted = 声音被静音
 
 ; Only applies if <ramp-volume> is used
 ;ramp-volume-0 = 
