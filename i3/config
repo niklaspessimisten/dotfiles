@@ -8,7 +8,7 @@ exec dunst
 exec --no-startup-id pamac-tray
 exec --no-startup-id nm-applet
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec compton --config ~/.config/compton.conf -b -f
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -188,31 +188,15 @@ bindsym --release Shift+Print exec scrot '%Y-%m-%d_%H:%M:%S.png' -s 'mv $f ~/Pic
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
 
 # i3-gaps settings
-#gaps inner 5
-#gaps outer 2
+gaps inner 5
+gaps outer 5
 #smart_gaps on
 #smart_borders on
 
 default_border pixel
 new_window pixel
 
-bar {
-	font pango:DejaVu Sans Book 10
-	position top
-	status_command i3status	
-
-	colors {
-	background #242424
-	statusline #FFFFFFFF
-	separator #FFFFFFFF
-	focused_workspace  #4c7899 #285577 #ffffff
-	active_workspace   #333333 #5f676a #ffffff
-	inactive_workspace #333333 #222222 #888888
-	urgent_workspace   #2f343a #900000 #ffffff
- 	}
-}
-
-# Autostart on workspaces
+#Autostart on workspaces
 #exec --no-startup-id i3-msg 'workspace 1; exec i3-sensible-terminal'
 #exec --no-startup-id i3-msg 'workspace 2; exec firefox'
 #exec --no-startup-id i3-msg 'workspace 3; exec telegram-desktop'
